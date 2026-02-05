@@ -60,6 +60,5 @@ mse = mean_squared_error(y_test, y_pred)
 mse
 
 import pickle
-with open('model.pkl', 'wb') as f:
-    pickle.dump(model, f)
+pickle.dump(model, open("model.pkl", "wb"))
 
