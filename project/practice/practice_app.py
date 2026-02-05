@@ -25,7 +25,7 @@ model = pickle.load(open(model_path, "rb"))
 
 st.title("Student placement predictor")
 st.write("Kindly provide your details")
-Student_ID = st.number_input("Student_ID", min_value=0.0)
+Student_ID = st.number_input("Student_ID")
 Gender = st.radio("Gender", ["Male", "Female"])
 Stream = st.radio("Stream", ["CSE", "ESE", "IT","ME","CE"])
 CGPA = st.number_input("CGPA", min_value=0.0)
