@@ -12,10 +12,8 @@ import streamlit as st
 import pickle
 import numpy as np
 
-def load_model():
- with load(open('model.pkl', 'rb')) as f:
-    pickle.dump(model, f)
-model = load_model()
+
+model = pickle.load(open("model.pkl", "rb"))
 
 st.title("Student placement predictor")
 st.write("Kindly provide your details")
