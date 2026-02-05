@@ -13,9 +13,8 @@ import pickle
 import numpy as np
 
 def load_model():
- model = pickle.load(open('model.pkl','rb'))
- return model
-
+with open('model.pkl', 'rb') as f:
+    pickle.dump(model, f)
 model = load_model()
 
 st.title("Student placement predictor")
