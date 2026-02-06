@@ -8,13 +8,15 @@ import numpy as np
 import pickle
 import os
 
-model = pickle.load(open(model_path, "rb"))
-
-#BASE_DIR = os.path.dirname(__file__)
-#encoder_path = os.path.join(BASE_DIR, "encoder.pkl")
+BASE_DIR = os.path.dirname(__file__)
+encoder_path = os.path.join(BASE_DIR, "model.pkl")
 
 
-if not os.path.exists("disease_model.pkl"):
+BASE_DIR = os.path.dirname(__file__)
+encoder_path = os.path.join(BASE_DIR, "encoder.pkl")
+
+
+if not os.path.exists("model.pkl"):
     st.error("Model file not found!")
     st.stop()
 
