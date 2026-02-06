@@ -61,4 +61,5 @@ mse
 
 import pickle
 pickle.dump(model, open("model.pkl", "wb"))
+pickle.dump(le, open("encoder.pkl", "wb"))
 
