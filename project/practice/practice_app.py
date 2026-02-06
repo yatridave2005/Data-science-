@@ -22,6 +22,10 @@ model_path = os.path.join(BASE_DIR, "model.pkl")
 
 model = pickle.load(open(model_path, "rb"))
 
+BASE_DIR = os.path.dirname(__file__)
+encoder_path = os.path.join(BASE_DIR, "encoder.pkl")
+
+encoder = pickle.load(open(encoder_path,"rb"))
 
 st.title("Student placement predictor")
 st.write("Kindly provide your details")
