@@ -4,7 +4,7 @@ from langdetect import detect
 # Load summarizer
 summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
 
-# Translation pipelines cache
+# Cache translation models
 translation_pipelines = {}
 
 def get_translation_pipeline(src_lang):
@@ -16,15 +16,21 @@ def get_translation_pipeline(src_lang):
     return translation_pipelines[model_name]
 
 def translate_to_english(text):
-    lang = detect(text)
+    try:
+        lang = detect(text)
+    except:
+        lang = "en"
     
     if lang == "en":
         return text
     
-    translator = get_translation_pipeline(lang)
-    
-    translated = translator(text, max_length=512)
-    return translated[0]['translation_text']
+    try:
+        translator = get_translation_pipeline(lang)
+        translated = translator(text, max_length=512)
+        return translated[0]['translation_text']
+    except:
+        # fallback if language model not available
+        return text
 
 def summarize_text(text):
     summary = summarizer(text, max_length=130, min_length=40, do_sample=False)
@@ -39,9 +45,18 @@ def multilingual_summarizer(text):
         "summary": summary
     }
 
-# Example
-text = "यह एक उदाहरण है जिसमें हम टेक्स्ट का सारांश निकाल रहे हैं।"
-result = multilingual_summarizer(text)
-
-print("Translated:", result["translated_text"])
-print("Summary:", result["summary"])
+# ---- TEST LOOP ----
+if __name__ == "__main__":
+    while True:
+        text = input("\nEnter text (or 'exit'): ")
+        
+        if text.lower() == "exit":
+            break
+        
+        result = multilingual_summarizer(text)
+        
+        print("\n--- Translated ---")
+        print(result["translated_text"])
+        
+        print("\n--- Summary ---")
+        print(result["summary"])
