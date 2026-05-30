@@ -103,8 +103,6 @@ with col1:
             "Sister",
             "Mother",
             "Father",
-            "Boyfriend",
-            "Girlfriend",
             "Teacher",
             "Colleague"
         ]
