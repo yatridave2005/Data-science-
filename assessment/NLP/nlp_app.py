@@ -9,6 +9,12 @@ Original file is located at
 
 # !pip install streamlit
 
+import os
+import streamlit as st
+
+st.write("Current Working Directory:", os.getcwd())
+st.write("Files in Current Directory:", os.listdir())
+
 import streamlit as st
 import joblib
 import spacy
