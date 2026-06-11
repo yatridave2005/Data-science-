@@ -74,7 +74,7 @@ def load_spacy():
 @st.cache_resource
 def load_model():
     model = joblib.load("assessment/NLP/news_model.pkl")
-vectorizer = joblib.load("assessment/NLP/vectorizer.pkl")
+    vectorizer = joblib.load("assessment/NLP/vectorizer.pkl")
     return model, vectorizer
 
 nlp = load_spacy()
