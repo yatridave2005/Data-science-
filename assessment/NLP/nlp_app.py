@@ -9,11 +9,6 @@ Original file is located at
 
 # !pip install streamlit
 
-import os
-import streamlit as st
-
-st.write("Current Working Directory:", os.getcwd())
-st.write("Files in Current Directory:", os.listdir())
 
 import streamlit as st
 import joblib
@@ -78,8 +73,8 @@ def load_spacy():
 
 @st.cache_resource
 def load_model():
-    model = joblib.load("news_model.pkl")
-    vectorizer = joblib.load("vectorizer.pkl")
+    model = joblib.load("assessment/NLP/news_model.pkl")
+vectorizer = joblib.load("assessment/NLP/vectorizer.pkl")
     return model, vectorizer
 
 nlp = load_spacy()
