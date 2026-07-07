@@ -1,30 +1,22 @@
 import streamlit as st
 from langchain_ollama import OllamaLLM
 
-# ----------------------------
-# Page Configuration
-# ----------------------------
+
 st.set_page_config(
     page_title="Dish Description Generator",
     page_icon="🍽️"
 )
 
-st.title("🍽️ AI Dish Description Generator")
+st.title("AI Dish Description Generator")
 
-# ----------------------------
-# Load LLM
-# ----------------------------
+
 llm = OllamaLLM(model="llama3.1")
 
-# ----------------------------
-# Session State
-# ----------------------------
+
 if "generated_text" not in st.session_state:
     st.session_state.generated_text = ""
 
-# ----------------------------
-# User Inputs
-# ----------------------------
+
 dish_name = st.text_input(
     "Dish Name",
     placeholder="Paneer Tikka Masala"
@@ -40,9 +32,7 @@ length = st.selectbox(
     ["Short", "Medium", "Long"]
 )
 
-# ----------------------------
-# Prompt Function
-# ----------------------------
+
 def build_prompt():
     return f"""
 You are a professional food copywriter.
@@ -62,9 +52,7 @@ Requirements:
 - Keep the description suitable for a food delivery app.
 """
 
-# ----------------------------
-# Generate Function
-# ----------------------------
+
 def generate_description():
     prompt = build_prompt()
 
@@ -78,9 +66,7 @@ def generate_description():
 
     st.session_state.generated_text = response
 
-# ----------------------------
-# Generate Button
-# ----------------------------
+
 if st.button("Generate Description"):
 
     if dish_name.strip() == "" or cuisine.strip() == "":
@@ -88,17 +74,13 @@ if st.button("Generate Description"):
     else:
         generate_description()
 
-# ----------------------------
-# Regenerate Button
-# ----------------------------
+
 if st.session_state.generated_text:
 
     if st.button("Regenerate"):
         generate_description()
 
-# ----------------------------
-# Output Container
-# ----------------------------
+
 if st.session_state.generated_text:
 
     with st.container(border=True):
